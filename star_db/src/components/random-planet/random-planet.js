@@ -47,7 +47,7 @@ const PlanetView = ({ planet }) => {
       <img
         className="planet-image"
         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
-        alt = "Planet is not loaded"
+        alt = "Error"
       />
       <div>
         <h4 className='text-center'>{name}</h4>
