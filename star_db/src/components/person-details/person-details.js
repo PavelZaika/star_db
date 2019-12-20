@@ -11,8 +11,8 @@ export default class PersonDetails extends Component {
           src="https://starwars-visualguide.com/assets/img/characters/3.jpg" />
 
         <div className="card-body">
-          <h4>R2-D2</h4>
-          <ul className="list-group list-group-flush">
+          <h4 className='text-center'>R2-D2</h4>
+          <ul className="list-group list-group-flush text-center">
             <li className="list-group-item">
               <span className="term">Gender</span>
               <span>male</span>

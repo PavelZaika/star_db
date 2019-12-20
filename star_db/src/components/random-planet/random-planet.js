@@ -28,7 +28,6 @@ export default class RandomPlanet extends Component {
 
   render() {
     const { planet, loading } = this.state;
-
     const spinner = loading ? <Spinner /> : null;
     const content = !loading ? <PlanetView planet={planet} /> : null;
 
@@ -48,10 +47,11 @@ const PlanetView = ({ planet }) => {
       <img
         className="planet-image"
         src={`https://starwars-visualguide.com/assets/img/planets/${id}.jpg`}
+        alt = "Planet is not loaded"
       />
       <div>
-        <h4>{name}</h4>
-        <ul className="list-group list-group-flush">
+        <h4 className='text-center'>{name}</h4>
+        <ul className="list-group list-group-flush text-center">
           <li className="list-group-item">
             <span className="term">Population:</span>
             <span>{population}</span>
