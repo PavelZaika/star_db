@@ -21,7 +21,7 @@ export default class SwapiService {
   }
 
   async getAllPlanets() {
-    const res = await this.getResource(`/planets/`);
+    const res = await this.getResource(`/planets/?page=${Math.floor(Math.random() * (7 - 1 + 1)) + 1}`);
     return res.results.map(this._transformPlanet);
   }
 
@@ -31,7 +31,7 @@ export default class SwapiService {
   }
 
   async getAllStarships() {
-    const res = await this.getResource(`/starships/`);
+    const res = await this.getResource(`/starships/?page=${Math.floor(Math.random() * (4 - 1 + 1)) + 1}`);
     return res.results.map(this._transformStarship);
   }
 

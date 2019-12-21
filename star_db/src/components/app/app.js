@@ -9,7 +9,7 @@ import "./app.css";
 
 export default class App extends Component {
   state = {
-    selectedPerson: 4
+    selectedPerson: Math.floor(Math.random() * (87 - 1 + 1)) + 1
   };
 
   onPersonSelected = (id) => {
