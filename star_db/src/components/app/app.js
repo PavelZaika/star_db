@@ -12,14 +12,14 @@ export default class App extends Component {
     selectedPerson: Math.floor(Math.random() * (87 - 1 + 1)) + 1
   };
 
-  onPersonSelected = (id) => {
+  onPersonSelected = id => {
     this.setState({
       selectedPerson: id
     });
   };
 
   render() {
-    const {selectedPerson} = this.state;
+    const { selectedPerson } = this.state;
     return (
       <div className="mx-5">
         <Header />
@@ -27,10 +27,10 @@ export default class App extends Component {
 
         <div className="row mb2">
           <div className="col-md-6">
-            <ItemList onItemSelected = {this.onPersonSelected}/>
+            <ItemList onItemSelected={this.onPersonSelected} />
           </div>
           <div className="col-md-6">
-            <PersonDetails personId = {selectedPerson}/>
+            <PersonDetails personId={selectedPerson} />
           </div>
         </div>
       </div>
