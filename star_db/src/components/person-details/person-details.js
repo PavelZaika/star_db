@@ -82,7 +82,7 @@ const PersonView = ({ person }) => {
         alt="character"
       />
 
-      <div className="card-body">
+      <div className="card-body text-center">
         <h4>{name}</h4>
         <ul className="list-group list-group-flush">
           <li className="list-group-item">
