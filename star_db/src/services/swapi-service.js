@@ -11,7 +11,7 @@ export default class SwapiService {
   }
 
   async getAllPeople() {
-    const res = await this.getResource(`/people/`);
+    const res = await this.getResource(`/people/?page=${Math.floor(Math.random() * (9 - 1 + 1)) + 1}`);
     return res.results.map(this._transformPerson);
   }
 
