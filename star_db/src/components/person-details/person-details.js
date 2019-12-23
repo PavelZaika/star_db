@@ -74,6 +74,7 @@ export default class PersonDetails extends Component {
 
 const PersonView = ({ person }) => {
   const { id, name, gender, birthYear, eyeColor } = person;
+  
   return (
     <React.Fragment>
       <img
