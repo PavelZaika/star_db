@@ -1,49 +1,55 @@
 export default class SwapiService {
   _apiBase = "https://swapi.co/api";
 
-  async getResource(url) {
+  getResource = async url => {
     const res = await fetch(`${this._apiBase}${url}`);
 
     if (!res.ok) {
       throw new Error(`Could not fetch ${url}, received ${res.status}`);
     }
     return await res.json();
-  }
+  };
 
-  async getAllPeople() {
-    const res = await this.getResource(`/people/?page=${Math.floor(Math.random() * (9 - 1 + 1)) + 1}`);
+  getAllPeople = async () => {
+    const res = await this.getResource(
+      `/people/?page=${Math.floor(Math.random() * (9 - 1 + 1)) + 1}`
+    );
     return res.results.map(this._transformPerson);
-  }
+  };
 
-  async getPerson(id) {
+  getPerson = async id => {
     const person = await this.getResource(`/people/${id}/`);
     return this._transformPerson(person);
-  }
+  };
 
-  async getAllPlanets() {
-    const res = await this.getResource(`/planets/?page=${Math.floor(Math.random() * (7 - 1 + 1)) + 1}`);
+  getAllPlanets = async () => {
+    const res = await this.getResource(
+      `/planets/?page=${Math.floor(Math.random() * (7 - 1 + 1)) + 1}`
+    );
     return res.results.map(this._transformPlanet);
-  }
+  };
 
-  async getPlanet(id) {
+  getPlanet = async id => {
     const planet = await this.getResource(`/planets/${id}/`);
     return this._transformPlanet(planet);
-  }
+  };
 
-  async getAllStarships() {
-    const res = await this.getResource(`/starships/?page=${Math.floor(Math.random() * (4 - 1 + 1)) + 1}`);
+  getAllStarships = async () => {
+    const res = await this.getResource(
+      `/starships/?page=${Math.floor(Math.random() * (4 - 1 + 1)) + 1}`
+    );
     return res.results.map(this._transformStarship);
-  }
+  };
 
-  async getStarship(id) {
+  getStarship = async id => {
     const starship = await this.getResource(`/starships/${id}/`);
     return this._transformStarship(starship);
-  }
+  };
 
-  _extractId(item) {
+  _extractId = item => {
     const idRegExp = /\/([0-9]*)\/$/;
     return item.url.match(idRegExp)[1];
-  }
+  };
 
   _transformPlanet = planet => {
     return {
@@ -70,7 +76,6 @@ export default class SwapiService {
   };
 
   _transformPerson = person => {
-   
     return {
       id: this._extractId(person),
       name: person.name,
