@@ -2,14 +2,16 @@ import React, { Component } from "react";
 
 import Header from "../header";
 import RandomPlanet from "../random-planet";
-import ItemList from "../item-list";
-import PersonDetails from "../person-details";
+// import ItemList from "../item-list";
+// import PersonDetails from "../person-details";
+import ErrorIndicator from "../error-indicator/";
+import PeoplePage from "../people-page";
 
 import "./app.css";
 
 export default class App extends Component {
   state = {
-    selectedPerson: Math.floor(Math.random() * (87 - 1 + 1)) + 1
+    hasError: false
   };
 
   onPersonSelected = id => {
@@ -18,20 +20,22 @@ export default class App extends Component {
     });
   };
 
+  componentDidCatch() {
+    this.setState({
+      hasError: true
+    });
+  }
+
   render() {
-    const { selectedPerson } = this.state;
+    if (this.state.hasError) {
+      return <ErrorIndicator />;
+    }
     return (
       <div className="mx-5">
         <Header />
         <RandomPlanet />
-
-        <div className="row mb2">
-          <div className="col-md-6">
-            <ItemList onItemSelected={this.onPersonSelected} />
-          </div>
-          <div className="col-md-6">
-            <PersonDetails personId={selectedPerson} />
-          </div>
+        <div className="mb-2">
+          <PeoplePage />
         </div>
       </div>
     );
