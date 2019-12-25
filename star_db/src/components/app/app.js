@@ -22,25 +22,31 @@ export default class App extends Component {
   }
 
   render() {
+    const randomPerson = Math.floor(Math.random() * (87 - 1 + 1)) + 1;
+    const randomStarship = Math.floor(Math.random() * (37 - 1 + 1)) + 1;
+    const randomPlanet = Math.floor(Math.random() * (61 - 1 + 1)) + 1;
+
     if (this.state.hasError) {
       return <ErrorIndicator />;
     }
     const {
       getPerson,
       getStarship,
+      getPlanet,
       getPersonImage,
-      getStarshipImage
+      getStarshipImage,
+      getPlanetImage
     } = this.swapiService;
 
     const personDetails = (
-      <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage}>
+      <ItemDetails itemId={randomPerson} getData={getPerson} getImageUrl={getPersonImage}>
         <Record field="gender" label="Gender: " />
         <Record field="eyeColor" label="Eye Color: " />
       </ItemDetails>
     );
     const starshipDetails = (
       <ItemDetails
-        itemId={5}
+        itemId={randomStarship}
         getData={getStarship}
         getImageUrl={getStarshipImage}
       >
@@ -49,12 +55,24 @@ export default class App extends Component {
         <Record field="costInCredits" label="Cost: " />
       </ItemDetails>
     );
+    const PlanetDetails = (
+      <ItemDetails
+        itemId={randomPlanet}
+        getData={getPlanet}
+        getImageUrl={getPlanetImage}
+      >
+        <Record field="population" label="Population: " />
+        <Record field="rotationPeriod" label="Rotation Period: " />
+        <Record field="diameter" label="Diameter: " />
+      </ItemDetails>
+    );
 
     return (
       <div className="mx-5">
         <Header />
 
         <Row left={personDetails} right={starshipDetails} />
+        <Row left={PlanetDetails}  />
         {/* <RandomPlanet /> */}
         {/* <div className="mb-2">
           <PeoplePage />
