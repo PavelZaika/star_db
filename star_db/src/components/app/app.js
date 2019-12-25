@@ -23,7 +23,7 @@ export default class App extends Component {
 
   render() {
     const randomPerson = Math.floor(Math.random() * (87 - 1 + 1)) + 1;
-    const randomStarship = Math.floor(Math.random() * (37 - 1 + 1)) + 1;
+    const randomStarship = Math.floor(Math.random() * (32 - 1 + 1)) + 1;
     const randomPlanet = Math.floor(Math.random() * (61 - 1 + 1)) + 1;
 
     if (this.state.hasError) {
