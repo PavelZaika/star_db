@@ -6,7 +6,7 @@ import ErrorIndicator from "../error-indicator";
 const Record = ({ item, field, label }) => {
   return (
     <li className="list-group-item">
-      <span classNme="term">{label}</span>
+      <span className="term">{label}</span>
       <span>{item[field]}</span>
     </li>
   );
@@ -89,11 +89,9 @@ const ItemView = ({ item, image, props }) => {
       <div className="card-body text-center">
         <h4>{name}</h4>
         <ul className="list-group list-group-flush">
-        {
-          React.Children.map(props, (child) => {
-            return React.cloneElement(child, {item});
-          })
-        }
+          {React.Children.map(props, child => {
+            return React.cloneElement(child, { item });
+          })}
         </ul>
       </div>
     </React.Fragment>

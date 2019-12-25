@@ -39,7 +39,11 @@ export default class App extends Component {
     } = this.swapiService;
 
     const personDetails = (
-      <ItemDetails itemId={randomPerson} getData={getPerson} getImageUrl={getPersonImage}>
+      <ItemDetails
+        itemId={randomPerson}
+        getData={getPerson}
+        getImageUrl={getPersonImage}
+      >
         <Record field="gender" label="Gender: " />
         <Record field="eyeColor" label="Eye Color: " />
       </ItemDetails>
@@ -51,8 +55,14 @@ export default class App extends Component {
         getImageUrl={getStarshipImage}
       >
         <Record field="model" label="Model: " />
-        <Record field="length" label="Length: " />
+        <Record field="length" label="Manufacturer: " />
+        <Record field="manufacturer" label="Length: " />
         <Record field="costInCredits" label="Cost: " />
+        <Record field="crew" label="Crew: " />
+        <Record field="passengers" label="Passengers: " />
+        <Record field="cargoCapacity" label="Cargo Capacity: " />
+        <Record field="hyperdriveRating" label="Hyperdrive Rating: " />
+        <Record field="starshipClass" label="Starship Class: " />
       </ItemDetails>
     );
     const PlanetDetails = (
@@ -72,7 +82,7 @@ export default class App extends Component {
         <Header />
 
         <Row left={personDetails} right={starshipDetails} />
-        <Row left={PlanetDetails}  />
+        <Row left={PlanetDetails} />
         {/* <RandomPlanet /> */}
         {/* <div className="mb-2">
           <PeoplePage />
