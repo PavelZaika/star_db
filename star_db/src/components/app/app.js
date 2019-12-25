@@ -6,7 +6,7 @@ import ErrorIndicator from "../error-indicator/";
 import "./app.css";
 import SwapiService from "../../services/swapi-service";
 import Row from "../row";
-import ItemDetails from "../item-details/item-details";
+import ItemDetails, { Record } from "../item-details/item-details";
 
 export default class App extends Component {
   swapiService = new SwapiService();
@@ -25,23 +25,28 @@ export default class App extends Component {
     if (this.state.hasError) {
       return <ErrorIndicator />;
     }
-    const { getPerson,
+    const {
+      getPerson,
       getStarship,
       getPersonImage,
-      getStarshipImage } = this.swapiService;
+      getStarshipImage
+    } = this.swapiService;
 
     const personDetails = (
-      <ItemDetails
-        itemId={11}
-        getData={getPerson}
-        getImageUrl={getPersonImage}></ItemDetails>
-      
+      <ItemDetails itemId={11} getData={getPerson} getImageUrl={getPersonImage}>
+        <Record field="gender" label="Gender: " />
+        <Record field="eyeColor" label="Eye Color: " />
+      </ItemDetails>
     );
     const starshipDetails = (
       <ItemDetails
         itemId={5}
         getData={getStarship}
-        getImageUrl={getStarshipImage}>
+        getImageUrl={getStarshipImage}
+      >
+        <Record field="model" label="Model: " />
+        <Record field="length" label="Length: " />
+        <Record field="costInCredits" label="Cost: " />
       </ItemDetails>
     );
 
@@ -49,9 +54,7 @@ export default class App extends Component {
       <div className="mx-5">
         <Header />
 
-        <Row
-            left={personDetails}
-            right={starshipDetails} />
+        <Row left={personDetails} right={starshipDetails} />
         {/* <RandomPlanet /> */}
         {/* <div className="mb-2">
           <PeoplePage />
