@@ -1,16 +1,14 @@
 import React, { Component } from "react";
-
 import Header from "../header";
-import RandomPlanet from "../random-planet";
- 
+
 import ErrorIndicator from "../error-indicator/";
-import PeoplePage from "../people-page";
 
 import "./app.css";
 import SwapiService from "../../services/swapi-service";
+import Row from "../row";
+import ItemDetails from "../item-details/item-details";
 
 export default class App extends Component {
-
   swapiService = new SwapiService();
 
   state = {
@@ -27,14 +25,37 @@ export default class App extends Component {
     if (this.state.hasError) {
       return <ErrorIndicator />;
     }
+    const { getPerson,
+      getStarship,
+      getPersonImage,
+      getStarshipImage } = this.swapiService;
+
+    const personDetails = (
+      <ItemDetails
+        itemId={11}
+        getData={getPerson}
+        getImageUrl={getPersonImage}></ItemDetails>
+      
+    );
+    const starshipDetails = (
+      <ItemDetails
+        itemId={5}
+        getData={getStarship}
+        getImageUrl={getStarshipImage}>
+      </ItemDetails>
+    );
+
     return (
       <div className="mx-5">
         <Header />
-        <RandomPlanet />
-        <div className="mb-2">
-          <PeoplePage />
-        </div>
 
+        <Row
+            left={personDetails}
+            right={starshipDetails} />
+        {/* <RandomPlanet /> */}
+        {/* <div className="mb-2">
+          <PeoplePage />
+        </div> */}
       </div>
     );
   }

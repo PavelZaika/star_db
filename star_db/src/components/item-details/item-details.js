@@ -1,17 +1,17 @@
 import React, { Component } from "react";
-
 import "./item-details.css";
-import SwapiService from "../../services/swapi-service";
+
 import Spinner from "../spinner";
 import ErrorIndicator from "../error-indicator";
 
 export default class ItemDetails extends Component {
-  swapiService = new SwapiService();
+ 
 
   state = {
     item: null,
     loading: true,
-    error: false
+    error: false,
+    image: null
   };
 
   componentDidMount() {
@@ -25,7 +25,7 @@ export default class ItemDetails extends Component {
   }
 
   updateItem() {
-    const { itemId } = this.props;
+    const { itemId, getData, getImageUrl } = this.props;
     if (!itemId) {
       return;
     }
@@ -34,10 +34,9 @@ export default class ItemDetails extends Component {
       loading: true
     });
 
-    this.swapiService
-      .getPerson(itemId)
+    getData(itemId)
       .then(item => {
-        this.setState({ item, loading: false });
+        this.setState({ item, loading: false, image: getImageUrl(item)});
       })
       .catch(this.onError);
   }
@@ -50,13 +49,11 @@ export default class ItemDetails extends Component {
   };
 
   render() {
-    const { item, loading, error } = this.state;
-
+    const { item, loading, error, image } = this.state;
     const hasData = !(loading || error);
-
     const errorMessage = error ? <ErrorIndicator /> : null;
     const spinner = loading ? <Spinner /> : null;
-    const content = hasData ? <ItemView item={item} /> : null;
+    const content = hasData ? <ItemView item={item} image={image} /> : null;
 
     if (!this.state.item) {
       return <Spinner />;
@@ -72,14 +69,15 @@ export default class ItemDetails extends Component {
   }
 }
 
-const ItemView = ({ item }) => {
-  const { id, name, gender, birthYear, eyeColor } = item;
+const ItemView = ({ item, image }) => {
+  const {name, gender, birthYear, eyeColor } = item;
   
+
   return (
     <React.Fragment>
       <img
         className="item-image"
-        src={`https://starwars-visualguide.com/assets/img/characters/${id}.jpg`}
+        src={image}
         alt="character"
       />
 
