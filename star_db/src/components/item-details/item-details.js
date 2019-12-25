@@ -57,7 +57,6 @@ export default class ItemDetails extends Component {
   };
 
   render() {
-    
     const { item, loading, error, image } = this.state;
     const hasData = !(loading || error);
     const errorMessage = error ? <ErrorIndicator /> : null;
@@ -83,10 +82,7 @@ export default class ItemDetails extends Component {
 const ItemView = ({ item, image, props }) => {
   const { name } = item;
 
-  
-
   return (
-    
     <React.Fragment>
       <img className="item-image" src={image} alt="character" />
 
