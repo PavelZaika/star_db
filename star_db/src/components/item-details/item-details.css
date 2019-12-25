@@ -1,6 +1,6 @@
 .item-details {
   display: flex;
-  
+  margin-top: 2rem;
   flex-direction: row;
   padding: 1rem;
   
