@@ -1,7 +1,6 @@
 import React from "react";
 import "./item-list.css";
 
-
 const ItemList = props => {
   const { data, onItemSelected, children: renderLabel } = props;
   const items = data.map(item => {
@@ -18,8 +17,11 @@ const ItemList = props => {
     );
   });
 
+  ItemList.defaultProps = {
+    onItemSelected: () => {}
+  };
+
   return <ul className="item-list list-group">{items}</ul>;
 };
-
 
 export default ItemList;
