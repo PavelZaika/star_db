@@ -31,6 +31,12 @@ export default class App extends Component {
         <Router>
           <div className="mx-5">
             <Header />
+
+            <Route
+              path="/"
+              render={() => <h2 className="text-center text-danger">Welcome to StarDB</h2>}
+              exact={true}
+            />
             <Route path="/people" component={PeoplePage} />
             <Route path="/planets" component={PlanetsPage} />
             <Route path="/starships" component={StarshipsPage} />
