@@ -44,14 +44,14 @@ export default class App extends Component {
               )}
               exact={true}
             />
-            <Route path="/people" component={PeoplePage} exact />
-            <Route
+            <Route path="/people/:id?" component={PeoplePage} exact />
+            {/* <Route
               path="/people/:id"
               render={({ match }) => {
                 const { id } = match.params;
                 return <PersonDetails itemId = {id}/>;
               }}
-            />
+            /> */}
 
             <Route path="/planets" component={PlanetsPage} exact />
             <Route
