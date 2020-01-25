@@ -3,7 +3,13 @@ import Header from "../header";
 import ErrorIndicator from "../error-indicator/";
 import "./app.css";
 import SwapiService from "../../services/swapi-service";
-import { PeoplePage, PlanetsPage, StarshipsPage } from "../pages";
+import {
+  PeoplePage,
+  PlanetsPage,
+  StarshipsPage,
+  SecretPage,
+  LoginPage
+} from "../pages";
 import { SwapiServiceProvider } from "../swapi-service-context/";
 
 import { BrowserRouter as Router, Route } from "react-router-dom";
@@ -17,7 +23,14 @@ export default class App extends Component {
   swapiService = new SwapiService();
 
   state = {
-    hasError: false
+    hasError: false,
+    isLoggedIn: false
+  };
+
+  onLogin = () => {
+ this.setState({
+   isLoggedIn: true
+ })
   };
 
   componentDidCatch() {
@@ -27,6 +40,9 @@ export default class App extends Component {
   }
 
   render() {
+
+    const {isLoggedIn} = this.state;
+
     if (this.state.hasError) {
       return <ErrorIndicator />;
     }
@@ -45,13 +61,13 @@ export default class App extends Component {
               exact={true}
             />
             <Route path="/people/:id?" component={PeoplePage} />
-         
+
             <Route path="/planets" component={PlanetsPage} exact />
             <Route
               path="/planets/:id"
               render={({ match }) => {
                 const { id } = match.params;
-                return <PlanetDetails itemId = {id}/>;
+                return <PlanetDetails itemId={id} />;
               }}
             />
 
@@ -60,7 +76,22 @@ export default class App extends Component {
               path="/starships/:id"
               render={({ match }) => {
                 const { id } = match.params;
-                return <StarshipDetails itemId = {id}/>;
+                return <StarshipDetails itemId={id} />;
+              }}
+            />
+
+            <Route
+              path="/login"
+              render={() => {
+                return <LoginPage isLoggedIn={isLoggedIn}
+                onLogin = {this.onLogin}/>;
+              }}
+            />
+
+            <Route
+              path="/secret"
+              render={() => {
+                return <SecretPage isLoggedIn={isLoggedIn}/>;
               }}
             />
           </div>
